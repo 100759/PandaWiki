@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  pandan-wiki:
+    build: .  # 基于当前目录的 Dockerfile 构建
+    ports:
+      - "3000:3000"  # 端口映射（Zeabur 会自动分配公网端口）
+    volumes:
+      - pandan-data:/app/data  # 数据卷挂载（持久化知识库数据）
+    environment:
+      # 可选：自定义环境变量（参考 Pandan Wiki 官方文档）
+      - NODE_ENV=production  # 生产环境
+      # - PANDAN_SECRET=你的自定义密钥（用于加密数据，可选）
+      # - PANDAN_BASE_URL=https://你的域名.com（若绑定自定义域名，需配置）
+
+volumes:
+  pandan-data:  # 定义数据卷（Zeabur 会自动管理存储）
